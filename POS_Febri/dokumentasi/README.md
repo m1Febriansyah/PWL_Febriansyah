@@ -8,12 +8,12 @@ Ini adalah aplikasi web sederhana menggunakan **Laravel 11** untuk memenuhi tuga
 
 ## 1. Halaman Utama 
 
-<img src="/img/pos1.jpg">
+<img src="img/pos1.jpg">
 
 ## 2. Daftar Produk
 
-<img src="/img/pos2.jpg">
+<img src="img/pos2.jpg">
 
 ## 3. Halaman Transaksi
 
-<img src="/img/pos3.jpg">
+<img src="img/pos3.jpg">
