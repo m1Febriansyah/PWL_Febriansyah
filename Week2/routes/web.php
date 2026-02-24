@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\WelcomeController;
-Route::get('/hello', [WelcomeController::class, 'hello']);
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
 
 use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index']);
@@ -23,6 +23,8 @@ Route::resource('photos',
 PhotoController::class)->except([ 'create', 'store',
 'update', 'destroy'
 ]);
+
+
 
 Route::get('/world', function () {
     return 'World';
