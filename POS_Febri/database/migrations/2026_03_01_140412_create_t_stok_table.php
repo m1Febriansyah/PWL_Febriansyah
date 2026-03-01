@@ -14,12 +14,13 @@ return new class extends Migration
     Schema::create('t_stok', function (Blueprint $table) {
         $table->id('stok_id');
         $table->unsignedBigInteger('barang_id');
-        $table->integer('stok');
+        $table->unsignedBigInteger('user_id'); // Tambahkan ini
+        $table->dateTime('stok_tanggal');      // Tambahkan ini
+        $table->integer('stok_jumlah');        // Ubah dari 'stok' menjadi 'stok_jumlah' agar sinkron
         $table->timestamps();
 
-        $table->foreign('barang_id')
-              ->references('barang_id')
-              ->on('m_barang');
+        $table->foreign('barang_id')->references('barang_id')->on('m_barang');
+        $table->foreign('user_id')->references('user_id')->on('m_user');
     });
 }
 

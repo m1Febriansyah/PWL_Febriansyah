@@ -17,16 +17,12 @@ return new class extends Migration
         $table->unsignedBigInteger('supplier_id');
         $table->string('barang_kode', 20)->unique();
         $table->string('barang_nama', 100);
+        $table->integer('harga_beli'); 
         $table->integer('harga_jual');
         $table->timestamps();
 
-        $table->foreign('kategori_id')
-              ->references('kategori_id')
-              ->on('m_kategori');
-
-        $table->foreign('supplier_id')
-              ->references('supplier_id')
-              ->on('m_supplier');
+        $table->foreign('kategori_id')->references('kategori_id')->on('m_kategori');
+        $table->foreign('supplier_id')->references('supplier_id')->on('m_supplier');
     });
 }
 
