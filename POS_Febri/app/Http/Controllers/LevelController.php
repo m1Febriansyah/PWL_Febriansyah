@@ -9,19 +9,25 @@ class LevelController extends Controller
 {
     public function index()
     {
-        // Langkah 1: Mencoba Insert (Tambahkan data pelanggan)
-        // DB::insert('insert into m_level(level_kode, level_nama, created_at) values(?, ?, ?)', ['CUS', 'Pelanggan', now()]);
-        
-        // Langkah 2: Mencoba Update (Mengubah nama level yang baru dibuat)
-        // $row = DB::update('update m_level set level_nama = ? where level_kode = ?', ['Customer', 'CUS']);
+        // --- Praktikum 5: Query Builder ---
+
+        // Langkah 1: Insert menggunakan Query Builder
+        // DB::table('m_level')->insert([
+        //     'level_kode' => 'CUS',
+        //     'level_nama' => 'Pelanggan',
+        //     'created_at' => now(),
+        // ]);
+
+        // Langkah 2: Update menggunakan Query Builder
+        // $row = DB::table('m_level')->where('level_kode', 'CUS')->update(['level_nama' => 'Customer']);
         // return 'Update data berhasil. Jumlah data yang diupdate: ' . $row . ' baris';
 
-        // Langkah 3: Mencoba Delete (Menghapus data)
-        // $row = DB::delete('delete from m_level where level_kode = ?', ['CUS']);
+        // Langkah 3: Delete menggunakan Query Builder
+        // $row = DB::table('m_level')->where('level_kode', 'CUS')->delete();
         // return 'Delete data berhasil. Jumlah data yang dihapus: ' . $row . ' baris';
 
-        // Langkah 4: Menampilkan data (Select)
-        $data = DB::select('select * from m_level');
+        // Langkah 4: Select/Get menggunakan Query Builder
+        $data = DB::table('m_level')->get();
         return view('level', ['data' => $data]);
     }
 }
