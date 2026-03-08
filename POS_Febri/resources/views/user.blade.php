@@ -6,26 +6,19 @@
 <body>
     <h1>Data User</h1>
     <table border="1" cellpadding="5" cellspacing="0">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Nama</th>
-                <th>Level</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($data as $d)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $d->user_id }}</td>
-                <td>{{ $d->username }}</td>
-                <td>{{ $d->nama }}</td>
-                <td>{{ $d->level->level_nama ?? '-' }}</td>
-            </tr>
-            @endforeach
-        </tbody>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Nama</th>
+            <th>ID Level</th>
+        </tr>
+        <tr>
+            {{-- Karena $data adalah satu objek, langsung panggil propertinya --}}
+            <td>{{ $data->user_id }}</td>
+            <td>{{ $data->username }}</td>
+            <td>{{ $data->nama }}</td>
+            <td>{{ $data->level_id }}</td>
+        </tr>
     </table>
 </body>
 </html>
