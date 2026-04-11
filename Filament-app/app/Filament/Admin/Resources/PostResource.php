@@ -20,9 +20,12 @@ use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Support\Icons\Heroicon;
+use Filament\Forms\Components\Group;
 
 class PostResource extends Resource
 {
@@ -33,24 +36,48 @@ class PostResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                 TextInput::make('title')->required(),
-TextInput::make('slug')->required(),
-Select::make('category_id')
-        ->relationship('category', 'name')
-        ->preload()
-        ->searchable()
-        ->required(),
-        ColorPicker::make('color'),
-        MarkdownEditor::make('content'),
-        FileUpload::make('image')
-        ->disk('public')
-        ->directory('posts'),
-        TagsInput::make('tags'),
-        Checkbox::make('is_published'),
-        DateTimePicker::make('published_at'),
-            ]);
-    }
+        ->schema([
+          Section::make("Post Details")
+                ->description("Fill in the details of the post")
+                // -> icon(Heroicon::RocketLaunch)
+                ->icon('heroicon-o-document-text')
+                ->schema([
+                    //grouping fields into 2 columns
+                    Group::make([
+                        TextInput::make("title"),
+                        TextInput::make("slug"),
+                        Select::make("category_id")
+                            ->relationship("category", "name")
+                            ->preload()
+                            ->searchable(),
+                        ColorPicker::make("color"),
+                    ])->columns(2),
+
+                    MarkdownEditor::make("content"),
+                ])->columnSpan(2),
+
+            //Grouping fields into 2 columns
+            Group::make([
+
+                //section 2 - image
+                Section::make("Image Upload")
+                    ->schema([
+                        FileUpload::make("image")
+                            ->disk("public")
+                            ->directory("posts"),
+                    ]),
+
+                //section 3 - meta
+                Section::make("Meta Information")
+                    ->schema([
+                        TagsInput::make("tags"),
+                        Checkbox::make("published"),
+                        DateTimePicker::make("published_at"),
+                    ]),
+            ])->columnSpan(1)
+
+        ])->columns(3);
+        }
 
     public static function table(Table $table): Table
     {
