@@ -37,46 +37,54 @@ class PostResource extends Resource
     {
         return $form
         ->schema([
-          Section::make("Post Details")
-                ->description("Fill in the details of the post")
-                // -> icon(Heroicon::RocketLaunch)
-                ->icon('heroicon-o-document-text')
+        Section::make("Post Details")
+            ->description("Fill in the details of the post")
+            // -> icon(Heroicon::RocketLaunch)
+            ->icon('heroicon-o-document-text')
+            ->schema([
+                //grouping fields into 2 columns
+                Group::make([
+                    TextInput::make("title")
+                        ->rules('required | min:3 | max:10'),
+                    TextInput::make("slug")
+                        ->rules('required')
+                        ->unique()
+                        ->validationMessages([
+                            "unique" => "Slug must be unique"
+                        ]),
+                    Select::make("category_id")
+                        ->relationship("category", "name")
+                        ->required()
+                        ->preload()
+                        ->searchable(),
+                    ColorPicker::make("color"),
+                ])->columns(2),
+
+                MarkdownEditor::make("content"),
+            ])->columnSpan(2),
+
+        //Grouping fields into 2 columns
+        Group::make([
+
+            //section 2 - image
+            Section::make("Image Upload")
                 ->schema([
-                    //grouping fields into 2 columns
-                    Group::make([
-                        TextInput::make("title"),
-                        TextInput::make("slug"),
-                        Select::make("category_id")
-                            ->relationship("category", "name")
-                            ->preload()
-                            ->searchable(),
-                        ColorPicker::make("color"),
-                    ])->columns(2),
+                    FileUpload::make("image")
+                        ->required()
+                        ->disk("public")
+                        ->directory("posts"),
+                ]),
 
-                    MarkdownEditor::make("content"),
-                ])->columnSpan(2),
+            //section 3 - meta
+            Section::make("Meta Information")
+                ->schema([
+                    TagsInput::make("tags"),
+                    Checkbox::make("published"),
+                    DateTimePicker::make("published_at"),
+                ]),
+        ])->columnSpan(1)
 
-            //Grouping fields into 2 columns
-            Group::make([
-
-                //section 2 - image
-                Section::make("Image Upload")
-                    ->schema([
-                        FileUpload::make("image")
-                            ->disk("public")
-                            ->directory("posts"),
-                    ]),
-
-                //section 3 - meta
-                Section::make("Meta Information")
-                    ->schema([
-                        TagsInput::make("tags"),
-                        Checkbox::make("published"),
-                        DateTimePicker::make("published_at"),
-                    ]),
-            ])->columnSpan(1)
-
-        ])->columns(3);
+    ])->columns(3);
         }
 
     public static function table(Table $table): Table
