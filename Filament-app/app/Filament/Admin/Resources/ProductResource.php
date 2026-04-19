@@ -22,6 +22,11 @@ use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\IconEntry;
 
 class ProductResource extends Resource
 {
@@ -96,7 +101,8 @@ Action::make('save')
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+            Tables\Actions\ViewAction::make(), // TAMBAHKAN INI
+            Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -113,11 +119,71 @@ Action::make('save')
     }
 
     public static function getPages(): array
+{
+    return [
+        'index' => Pages\ListProducts::route('/'),
+        'create' => Pages\CreateProduct::route('/create'),
+        'view' => Pages\ViewProduct::route('/{record}'), // TAMBAHKAN INI
+        'edit' => Pages\EditProduct::route('/{record}/edit'),
+    ];
+}
+    public static function infolist(Infolist $infolist): Infolist
     {
-        return [
-            'index' => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit' => Pages\EditProduct::route('/{record}/edit'),
-        ];
+    return $infolist
+        ->components([
+            Section::make('Product Info')
+            ->schema([
+            TextEntry::make('name')
+            ->label('Product Name')
+            ->weight('bold')
+            ->color('primary'),
+            TextEntry::make('id')
+            ->label('Product ID'),
+            TextEntry::make('sku')
+            ->label('Product SKU')
+            ->badge()
+            ->color('success'),
+            TextEntry::make('description')
+            ->label('Product Description'),
+            TextEntry::make('created_at')
+            ->label('Product Creation Date')
+            ->date('d M Y')
+            ->color('info'),
+            ])
+            ->columnSpanFull(),
+            Section::make('Pricing & Stock')
+            ->schema([
+            TextEntry::make('price')
+            ->label('Product Price')
+            ->icon('heroicon-o-currency-dollar'),
+            TextEntry::make('stock')
+            ->label('Product Stock'),
+            ])
+            ,
+            Section::make('Image and Status')
+            ->description('')
+            ->schema([
+        ImageEntry::make('image')
+            ->label('Product Image')
+            ->disk('public'),
+            
+        TextEntry::make('price')
+            ->label('Product Price')
+            ->weight('bold')
+            ->color('primary')
+            ->icon('heroicon-s-currency-dollar'),
+            
+        TextEntry::make('stock')
+            ->label('Product Stock')
+            ->weight('bold')
+            ->color('primary'),
+            IconEntry::make('is_active')
+            ->label('Is Active')
+            ->boolean(),
+            IconEntry::make('is_featured')
+            ->label('Is Featured')
+            ->boolean(),
+    ])
+        ]);
     }
 }
