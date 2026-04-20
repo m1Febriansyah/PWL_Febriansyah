@@ -2,8 +2,6 @@
 
 Dokumentasi ini berisi rangkuman Jobsheet 7, 8, dan 9 pada project Filament App. Susunannya dibuat berurutan sesuai materi: multistep form, infolist untuk view page, dan tabs pada detail view. Setiap jobsheet disertai langkah-langkah, analisis & diskusi, serta halaman khusus untuk gambar hasil akhir.
 
-## Identitas
-
 - Nama: Muhammad Febriansyah
 - NIM: 244107020199
 - Kelas: TI-2F
