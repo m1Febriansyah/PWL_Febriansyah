@@ -29,6 +29,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Forms\Components\Group;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Columns\IconColumn;
 
 class PostResource extends Resource
 {
@@ -94,24 +95,40 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                ->label('ID')
+                ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('title')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->toggleable(),
                 TextColumn::make('slug')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->toggleable(),
                 TextColumn::make('category.name')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->toggleable(),
                 ColorColumn::make('color')
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 ImageColumn::make('image')
                     ->disk('public')
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->label('Created at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('tags')
+                    ->label('Tags')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('published')
+                ->boolean()
+                ->label('Published')
+                ->toggleable(isToggledHiddenByDefault: true),
             ])->defaultSort('created_at', 'desc')
             ->filters([
                 Filter::make('created_at')             
