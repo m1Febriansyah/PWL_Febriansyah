@@ -59,11 +59,7 @@ TextColumn::make('title')
 - Ketik di search bar untuk mencari berdasarkan Title
 - Hasil tampil secara real-time (tanpa perlu klik tombol)
 
-**Screenshot:**
-```
-[Search Title Real-time]
-```
-(img/11-1.jpg)
+![Search Title Real-time](img/11-1.jpg)
 
 ---
 
@@ -129,11 +125,7 @@ use Filament\Forms\Components\DatePicker;
 - User klik filter → muncul date picker
 - Pilih tanggal → klik "Apply Filters" → data terfilter
 
-**Screenshot:**
-```
-[Date Filter UI]
-```
-(img/11-3.jpg)
+![Date Filter UI](img/11-3.jpg)
 
 ---
 
@@ -178,11 +170,7 @@ use Filament\Tables\Filters\SelectFilter;
 - User pilih kategori → data otomatis terfilter
 - Bisa dikombinasikan dengan date filter
 
-**Screenshot:**
-```
-[Select Filter Category]
-```
-(img/11-4.jpg)
+![Select Filter Category](img/11-4.jpg)
 
 ---
 
@@ -202,11 +190,7 @@ Fitur search dan filter bisa bekerja bersamaan:
 - Filter Category: "PHP" → tampil posts dengan kategori PHP
 - Result: Posts yang di-created pada 28-02-2026 dengan kategori PHP dan mengandung "Laravel"
 
-**Screenshot:**
-```
-[Combined Search + Filter UI]
-```
-(img/11-5.jpg)
+![Combined Search + Filter UI](img/11-5.jpg)
 
 ---
 
@@ -261,14 +245,10 @@ Mahasiswa berhasil:
    - Pastikan semuanya berjalan bersama
 
 5. **Screenshot (masing-masing):**
-   - Search Title/Slug/Category
-   (img/11-1.jpg)
-   - Filter Tanggal (Date Picker UI)
-   (img/11-2.jpg)
-   - Filter Kategori (Select Dropdown)
-   (img/11-3.jpg)
-   - Kombinasi Search + Filter
-   (img/11-4.jpg)
+   - Search Title/Slug/Category ![Search](img/11-1.jpg)
+   - Filter Tanggal (Date Picker UI) ![Date Filter](img/11-2.jpg)
+   - Filter Kategori (Select Dropdown) ![Category Filter](img/11-3.jpg)
+   - Kombinasi Search + Filter ![Combined](img/11-5.jpg)
 
 ---
 

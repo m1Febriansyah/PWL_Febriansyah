@@ -100,12 +100,7 @@ IconColumn::make('published')
 **Hasil:**
 - Kolom Published tampil dengan icon
 
-
-**Screenshot:**
-```
-[Tambahkan Kolom Baru - Published Column dengan Icon]
-```
-(img/12-1.jpg)
+![Tambahkan Kolom Baru - Published Column dengan Icon](img/12-1.jpg)
 
 ---
 
@@ -165,17 +160,9 @@ TextColumn::make('created_at')
 - User bisa mencentang atau menghilangkan kolom
 - Klik tombol "Apply Columns" → Kolom langsung berubah
 
-**Screenshot:**
-```
-[Toggle Column Menu - Showing Column Options]
-```
-(img/12-2.jpg)
+![Toggle Column Menu - Showing Column Options](img/12-2.jpg)
 
-**Screenshot:**
-```
-[Toggle Column Applied - Table dengan Some Columns Hidden]
-```
-(img/12-3.jpg)
+![Toggle Column Applied - Table dengan Some Columns Hidden](img/12-3.jpg)
 
 ---
 
@@ -214,17 +201,9 @@ IconColumn::make('published')
 - Kolom yang tersembunyi default tidak tampil
 - User dapat mengaktifkan via menu toggle
 
-**Screenshot:**
-```
-[Default Hidden Columns - Table without ID, Tags, Published]
-```
-(img/12-4.jpg)
+![Default Hidden Columns - Table without ID, Tags, Published](img/12-4.jpg)
 
-**Screenshot:**
-```
-[Toggle Menu - Showing Hidden Columns Available]
-```
-(img/12-5.jpg)
+![Toggle Menu - Showing Hidden Columns Available](img/12-5.jpg)
 
 ---
 
@@ -243,11 +222,7 @@ Filament otomatis menyimpan preferensi kolom user dalam **session**. Ini berarti
 4. User navigasi ke halaman lain
 5. Kembali ke tabel → Konfigurasi sama seperti sebelumnya
 
-**Screenshot:**
-```
-[Session Persistence - Kolom Tetap Hidden Setelah Navigasi]
-```
-(img/12-6.jpg)
+![Session Persistence - Kolom Tetap Hidden Setelah Navigasi](img/12-6.jpg)
 
 ---
 
@@ -289,12 +264,9 @@ Filament otomatis menyimpan preferensi kolom user dalam **session**. Ini berarti
    - Verifikasi bahwa preferensi tetap tersimpan
 
 4. **Dokumentasi dengan Screenshot:**
-   - Screenshot 1: Tampilan awal tabel (sebelum toggle)
-    (img/12-4.jpg)
-   - Screenshot 2: Menu toggle kolom terbuka
-    (img/12-5.jpg)
-   - Screenshot 3: Tampilan setelah beberapa kolom disembunyikan
-    (img/12-6.jpg)
+   - Screenshot 1: Tampilan awal tabel (sebelum toggle) ![Tampilan awal tabel](img/12-1.jpg)
+   - Screenshot 2: Menu toggle kolom terbuka ![Menu toggle kolom](img/12-2.jpg)
+   - Screenshot 3: Tampilan setelah beberapa kolom disembunyikan ![Tampilan setelah toggle](img/12-3.jpg)
 
 ---
 

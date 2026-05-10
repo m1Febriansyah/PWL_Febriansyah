@@ -63,11 +63,7 @@ TextColumn::make('title')
 - Klik 1× → Ascending (A–Z)
 - Klik 2× → Descending (Z–A)
 
-**Screenshot:**
-```
-[Sorting Title Ascending/Descending]
-```
-(img/10-1.jpg)
+![Sorting Title Ascending/Descending](img/10-1.jpg)
 ---
 
 ## D. Sorting pada Kolom Slug
@@ -115,11 +111,7 @@ TextColumn::make('created_at')
 - Bisa diurutkan berdasarkan tanggal terbaru atau terlama
 - Format tanggal otomatis tertampil rapi
 
-**Screenshot:**
-```
-[Sorting Created At]
-```
-(img/10-2.jpg)
+![Sorting Created At](img/10-2.jpg)
 ---
 
 ## G. Mengatur Default Sorting
@@ -162,11 +154,7 @@ public static function table(Table $table): Table
 }
 ```
 
-**Screenshot:**
-```
-[Default Sort Created At Descending]
-```
-(img/10-3.jpg)
+![Default Sort Created At Descending](img/10-3.jpg)
 ---
 
 ## 📊 H. Opsi Default Sort Lain
@@ -229,12 +217,9 @@ Mahasiswa berhasil:
    - Verifikasi urutan data
 
 4. **Screenshot:**
-   - Sorting Title Ascending
-   (img/10-1.jpg)
-   - Sorting Title Descending
-   (img/10-3.jpg)
-   - Sorting Date Descending (default)
-   (img/10-3.jpg)
+   - Sorting Title Ascending ![Sorting Title Ascending](img/10-1.jpg)
+   - Sorting Title Descending ![Sorting Descending](img/10-2.jpg)
+   - Sorting Date Descending (default) ![Sorting Date Default](img/10-3.jpg)
 
 ---
 
