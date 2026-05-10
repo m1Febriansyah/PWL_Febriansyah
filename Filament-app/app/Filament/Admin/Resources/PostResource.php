@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Select;
@@ -26,6 +27,8 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Support\Icons\Heroicon;
 use Filament\Forms\Components\Group;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 
 class PostResource extends Resource
 {
@@ -92,11 +95,14 @@ class PostResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title')
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
                 TextColumn::make('slug')
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
                 TextColumn::make('category.name')
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
                 ColorColumn::make('color')
                     ->sortable(),
                 ImageColumn::make('image')
@@ -108,7 +114,22 @@ class PostResource extends Resource
                     ->sortable(),
             ])->defaultSort('created_at', 'desc')
             ->filters([
-                //
+                Filter::make('created_at')             
+                ->label('Creation Date')
+                ->form([
+                    DatePicker::make('created_at')
+                    ->label('Select Date'),
+                ])
+                ->query(function ($query, $data) {
+                    return $query->when(
+                        $data['created_at'],
+                        fn ($query, $date) => $query->whereDate('created_at', $date)
+                    );
+                }),
+                SelectFilter::make('category_id')
+                ->label('Select Category')
+                ->relationship('category', 'name')
+                ->preload(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
