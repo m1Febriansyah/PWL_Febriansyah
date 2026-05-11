@@ -149,7 +149,23 @@ class PostResource extends Resource
                 ->preload(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+    Tables\Actions\EditAction::make()
+        ->icon('heroicon-o-pencil'),
+    Tables\Actions\ReplicateAction::make()
+        ->icon('heroicon-o-document-duplicate'),
+    Tables\Actions\DeleteAction::make()
+        ->icon('heroicon-o-trash'),
+    Tables\Actions\Action::make('status')
+        ->label('Status Change')
+        ->icon('heroicon-o-check-circle')
+        ->form([
+            Checkbox::make('published')
+                ->default(fn($record): bool => $record->published),
+        ])
+        ->action(function ($record, $data) {
+            $record->update(['published' => $data['published']]);
+        })
+        ->requiresConfirmation()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
