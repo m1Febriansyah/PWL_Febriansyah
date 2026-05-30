@@ -30,6 +30,7 @@ use Filament\Forms\Components\Group;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Columns\IconColumn;
+use App\Models\Category;
 
 class PostResource extends Resource
 {
@@ -58,8 +59,9 @@ class PostResource extends Resource
                         ]),
                     Select::make("category_id")
                         ->relationship("category", "name")
+                        ->options(Category::all()->pluck('name', 'id'))
                         ->required()
-                        ->preload()
+                        //->preload()
                         ->searchable(),
                     ColorPicker::make("color"),
                 ])->columns(2),
