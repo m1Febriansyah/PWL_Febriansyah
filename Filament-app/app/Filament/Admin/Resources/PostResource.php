@@ -31,6 +31,8 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Columns\IconColumn;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Filament\Admin\Resources\PostResource\RelationManagers\TagsRelationManager;
 
 class PostResource extends Resource
 {
@@ -84,7 +86,10 @@ class PostResource extends Resource
             //section 3 - meta
             Section::make("Meta Information")
                 ->schema([
-                    TagsInput::make("tags"),
+                    Select::make("tags")
+                        ->relationship('tags','name')
+                        ->multiple()
+                        ->preload(),
                     Checkbox::make("published"),
                     DateTimePicker::make("published_at"),
                 ]),
@@ -177,11 +182,11 @@ class PostResource extends Resource
     }
 
     public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
+{
+ return [
+ TagsRelationManager::class,
+ ];
+}
 
     public static function getPages(): array
     {
